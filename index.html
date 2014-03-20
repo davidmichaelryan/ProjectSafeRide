@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)http://getbootstrap.com/examples/starter-template/ -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>EECS 349: Project SafeRide</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="main.css" rel="stylesheet">
+
+  </head>
+
+  <body style="">
+
+    <div class="navbar navbar-inverse " role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="">Project SafeRide</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#problem">The Problem</a></li>
+            <li><a href="#solution">Our Solution</a></li>
+            <li><a href="#testing">Our Testing</a></li>
+            <li><a href="#results">Our Results</a></li>
+          </ul>
+          <ul class="nav navbar-nav pull-right">
+            <li><a href="#">Final Report</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+	<div class="header">
+		<h1>Project SafeRide</h1>
+		<img src='logo.gif'/>
+		<div class="by">
+			<h2>By: </h2>
+			<p class="sub">Anna Selonick: <a href="mailto:abselonick@gmail.com">Email</a></p>
+			<p class="sub">David Ryan: <a href="mailto:davidryan2015@u.northwestern.edu">Email</a></p>
+		</div>
+		<div class="course">
+			<h2>Course:</h2>
+			<p class="sub">EECS 349: Machine Learning</p>
+			<p class="sub">Northwestern University</p>
+			<p class="sub">Professor Douglas Downey</p>
+		</div>
+	</div>
+	<div class="divider"></div>
+	<div id="problem" class="content">
+		<h1>Our Problem</h1>
+		<div class="text">
+			<p>This project attempted to predict the wait time for a SafeRide on a particular night at a particular time. SafeRide is free car service on Northwestern’s campus that runs from 7:00pm to 3:00am seven days a week. SafeRide protects the health and safety of the Northwestern community by providing a safe and reliable travel option both on campus and throughout the local Evanston area. Unfortunately, students must often wait an hour or more before they can get a ride. Long wait times means students cannot rely on SafeRide to quickly escape uncomfortable or unsafe situations. Many times, this deters students from using the service at all. The long wait times often arise due to many students calling at the same time. If students calls were distributed more evenly throughout the night, or if SafeRide had more drivers during their busiest hours, the service would be much more effective. By predicting SafeRide wait times throughout the night and finding out what times are less busy, we hope to provide an accurate way to find out when the quietest times for a SafeRide are. Knowing when SafeRide will be less busy could also help the SafeRide board decide how many drivers to have on call each night. </p>
+			<img src="car2.jpg"/>
+			<p>We also looked at which features tend to affect wait times the most and how. The SafeRide executive board could use this information as a tool to decide how many drivers to have on call each night. For example, it is not immediately obvious how bad weather affects SafeRide wait times. It could keep students from going out at all and thus decrease the wait times throughout the night, or it could increase the wait times if students still go out but are more reliant on SafeRides to avoid walking in bad weather. By analyzing these factors, we can develop a set of preferences for the student body that the SafeRide executive board could use to understand when saferide will be busiest.</p>
+		</div>
+	</div>
+
+	<div class="divider"></div>
+
+	<div id="solution" class="content">
+		<h1>Our Solution</h1>
+		<div class="text">
+			<p>Initially, four attributes and one classifier were used. The classifier was wait time. The four attributes were hour of the night, day of the week, week of the quarter, and quarter, which for now are all divided categorically. After the progress report, two more attributes were added to the data set. The first was a binary weather attribute that was true if it rained or there was a thunderstorm and false if not. The second attribute was the minimum temperature recorded for that day. Initially, the features were divided categorically. </p>
+			<p>The four attributes were hour of the night, day of the week, week of the quarter, and the quarter itself, which for now are all divided into distinct categories. We were able to use some natural language processing to obtain the wait time based on a particular tweet, and used the timestamp to find the other attributes we’ve gathered so far. These timestamps were cross-referenced with Northwestern’s historical academic calendar to determine things like the week of the quarter. We will be randomly dividing the data into sets for training, validation, and testing for now, and may test on Saferide’s more recent tweets in the future.</p>
+
+		</div>
+	</div>
+
+	<div class="divider"></div>
+
+	<div id="testing" class="content">
+		<h1>Our Testing</h1>
+		<div class="text">
+			<p>The wait time data was gathered from SafeRide’s twitter, <a href="http://twitter.com/NUSafeRide">@NUSafeRide</a>. In total there were 10,700 tweets to read from the previous 5 years. Approximately 10,000 tweets contained relevant information that indicated the current wait time. We determined the relevance of these tweets through the use of some simple natural language processing. Tweets from @NUSafeRide that are about wait times follow a very simple format, along the lines of “Wait is 45 minutes” or even just “45 mins”. If a tweet followed that or other recognized formats, the time was extracted. If the wait time couldn’t be recognized, or if it was deemed to be an irrelevant tweet (such as “Happy Holidays!”), then it was not added to the dataset.</p>
+			<blockquote class="twitter-tweet" lang="en"><p>35-45 minutes</p>&mdash; SafeRide (@NUSafeRide) <a href="http://twitter.com/NUSafeRide/statuses/446457443674251264">March 20, 2014</a></blockquote>
+<script async src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
+			<p>Once a tweet was established as useful, the timestamp associated with that tweet was used to find other attributes. Hour of the night, day of the week, etc could be directly calculated from the timestamp, while such as week of the quarter or the quarter itself was compared against data gathered from the Office of the Registrar. Finally, weather for the specified time period was downloaded from WeatherUnderground.</p>
+			<p>We measured success 
+		</div>
+	</div>
+
+	<div class="divider"></div>
+
+	<div id="results" class="content">
+		<h1>Our Results</h1>
+		<div class="text">
+			<p></p>
+		</div>
+	</div>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+  
+
+</body></html>
