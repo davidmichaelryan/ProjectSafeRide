@@ -47,64 +47,135 @@
     </div>
 
     <div class="container">
-	<div class="header">
-		<h1>Project SafeRide</h1>
-		<img src='logo.gif'/>
-		<div class="by">
-			<h2>By: </h2>
-			<p class="sub">Anna Selonick: <a href="mailto:abselonick@gmail.com">Email</a></p>
-			<p class="sub">David Ryan: <a href="mailto:davidryan2015@u.northwestern.edu">Email</a></p>
+    	<div class="wrapper">
+		<div class="header">
+			<h1>Project SafeRide</h1>
+			<img src='logo.gif'/>
+			<div class="by">
+				<h2>By: </h2>
+				<p class="sub">Anna Selonick: <a href="mailto:abselonick@gmail.com"> <span class="glyphicon glyphicon-envelope"></span></a></p>
+				<p class="sub">David Ryan: <a href="mailto:davidryan2015@u.northwestern.edu"> <span class="glyphicon glyphicon-envelope"></span></a></p>
+			</div>
+			<div class="course">
+				<h2>Course:</h2>
+				<p class="sub">EECS 349: Machine Learning</p>
+				<p class="sub">Northwestern University</p>
+				<p class="sub">Professor Douglas Downey</p>
+			</div>
 		</div>
-		<div class="course">
-			<h2>Course:</h2>
-			<p class="sub">EECS 349: Machine Learning</p>
-			<p class="sub">Northwestern University</p>
-			<p class="sub">Professor Douglas Downey</p>
+		<div class="divider"></div>
+		<div id="problem" class="content">
+			<h1>Our Problem</h1>
+			<div class="text">
+				<p>This project attempted to predict the wait time for a SafeRide on a particular night at a particular time. <a href="http://www.northwestern.edu/saferide/">SafeRide</a> is free car service on Northwestern’s campus that runs from 7:00pm to 3:00am seven days a week. SafeRide protects the health and safety of the Northwestern community by providing a safe and reliable travel option both on campus and throughout the local Evanston area. Unfortunately, students must often wait an hour or more before they can get a ride. Long wait times means students cannot rely on SafeRide to quickly escape uncomfortable or unsafe situations. Many times, this deters them from using the service at all. The long wait times often arise due to many students calling at the same time. If  calls were distributed more evenly throughout the night, or if SafeRide had more drivers during their busiest hours, the service would be much more effective. By predicting SafeRide wait times throughout the night and finding out what times are less busy, we hope to provide an accurate way to find out when the quietest times for a SafeRide are. Knowing when SafeRide will be less busy could also help the SafeRide board decide how many drivers to have on call each night. </p>
+				<div class="image" style="max-width:640px;">
+					<img src="car2.jpg"/>
+					<p>A NU SafeRide car waiting for a student outside Norris</p>
+				</div>
+				<p>We also looked at which features tend to affect wait times the most and how. The SafeRide executive board could use this information as a tool to decide how many drivers to have on call each night. For example, it is not immediately obvious how bad weather affects SafeRide wait times. It could keep students from going out at all and thus decrease the wait times throughout the night, or it could increase the wait times if students still go out but are more reliant on SafeRides to avoid walking in bad weather. By analyzing these factors, we can develop a set of preferences for the student body that the SafeRide executive board could use to understand when saferide will be busiest.</p>
+			</div>
+		</div>
+
+		<div class="divider"></div>
+
+		<div id="solution" class="content">
+			<h1>Our Solution</h1>
+			<div class="text">
+				<div class="infobox">
+						<ul>
+							<strong>Attributes:</strong>
+							<li>Hour of the night</li>
+							<li>Week day</li>
+							<li>Week of the quarter</li>
+							<li>Quarter</li>
+							<li>Weather Events*</li>
+							<li>Min Temp*</li>
+							<div class="divider"></div>
+							<strong>Classifier:</strong>
+							<li>Wait time</li>
+						</ul>
+						<span>* Added in second round of testing</span>
+					</div>
+				<p>
+				We used six attributes to try and predict our classifier. We originally used hour of the night,  day of the week, week of the quarter, and the quarter itself. We later added weather events and the minimum recorded temperature for that night. We used these attributes to try and predict our classifier, which was the wait time for a SafeRide at that point in the night. We used these attributes as features in Weka, and were able to test our dataset with a variety of learners. We also sought to try different representations of our dataset, both in discrete and continuous results.</p>
+
+				<p>The wait time data was gathered from SafeRide’s twitter, <a href="http://twitter.com/NUSafeRide">@NUSafeRide</a>. In total there were 10,700 tweets to read from the previous 5 years. We determined the relevance of these tweets through the use of some simple natural language processing. Tweets from @NUSafeRide that are about wait times follow a very simple format, along the lines of “Wait is 45 minutes” or even just “45 mins”. If a tweet followed that or other recognized formats, the time was extracted.</p>
+				<div class="image" style="max-width:500px;">
+					<blockquote class="twitter-tweet" lang="en"><p>35-45 minutes</p>&mdash; SafeRide (@NUSafeRide) <a href="http://twitter.com/NUSafeRide/statuses/446457443674251264">March 20, 2014</a></blockquote>
+					<script async src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
+					<p>An example tweet from the SafeRide account. We valued this as 40 minutes.</p>
+				</div>
+				<p>If the wait time couldn’t be recognized, or if it was deemed to be an irrelevant tweet (such as “Happy Holidays!”), then it was not added to the dataset. Once a tweet was established as useful, the timestamp associated with that tweet was used to find other attributes. Hour of the night, day of the week, etc could be directly calculated from the timestamp, while such as week of the quarter or the quarter itself was compared against data gathered from the <a href="http://www.registrar.northwestern.edu/calendars/">Office of the Registrar</a>. Finally, weather for the specified time period was downloaded from <a href="http://www.wunderground.com/history/">WeatherUnderground.</a></p>
+
+			</div>
+		</div>
+
+		<div class="divider"></div>
+
+		<div id="testing" class="content">
+			<h1>Our Testing</h1>
+			<div class="text">
+				<div style="overflow:scroll">
+				<table class="table table-bordered">
+				      <thead>
+				        <tr>
+				          <th>Attribute</th>
+				          <th>Categorical</th>
+				          <th>Continuous</th>
+				        </tr>
+				      </thead>
+				      <tbody>
+				        <tr>
+				          <td>Hour</td>
+				          <td>0,1,2,...,8,9 (0=7pm)</td>
+				          <td>numeric</td>
+				        </tr>
+				        <tr>
+				          <td>Weekday</td>
+				          <td>0,1,2,...,5,6 (0=M,1=T,etc.)</td>
+				          <td>0 if Su-We; 1 if Thu-Sat</td>
+				        </tr>
+				        <tr>
+				          <td>Week of Quarter</td>
+				          <td>0,1,2,...,9,10</td>
+				          <td>numeric</td>
+				        </tr>
+				        <tr>
+				          <td>Quarter</td>
+				          <td>0,1,2 (F,W,S)</td>
+				          <td>0,1,2</td>
+				        </tr>
+				        <tr>
+				          <td>Weather Events</td>
+				          <td>thunderstorm,snow,rain,none</td>
+				          <td>0 if none;1 otherwise</td>
+				        </tr>
+				        <tr>
+				          <td>Min Temp</td>
+				          <td><0,0-25,25-50,50-75,>75</td>
+				          <td>numeric</td>
+				        </tr>
+				        <tr>
+				          <td>Wait Time</td>
+				          <td>0-20,20-40,40-60,60-80,booked</td>
+				          <td>numeric (booked = 90)</td>
+				        </tr>
+				      </tbody>
+				    </table>
+				   </div>
+		   		<p>We measured success based on whether or not we were able to put our predicted wait time in the same range as the actual wait time. For these tests, we created ranges in increments of 20, and tested our dataset using both categorical and continuous values.</p>
+			</div>
+		</div>
+
+		<div class="divider"></div>
+
+		<div id="results" class="content">
+			<h1>Our Results</h1>
+			<div class="text">
+				<p></p>
+			</div>
 		</div>
 	</div>
-	<div class="divider"></div>
-	<div id="problem" class="content">
-		<h1>Our Problem</h1>
-		<div class="text">
-			<p>This project attempted to predict the wait time for a SafeRide on a particular night at a particular time. SafeRide is free car service on Northwestern’s campus that runs from 7:00pm to 3:00am seven days a week. SafeRide protects the health and safety of the Northwestern community by providing a safe and reliable travel option both on campus and throughout the local Evanston area. Unfortunately, students must often wait an hour or more before they can get a ride. Long wait times means students cannot rely on SafeRide to quickly escape uncomfortable or unsafe situations. Many times, this deters students from using the service at all. The long wait times often arise due to many students calling at the same time. If students calls were distributed more evenly throughout the night, or if SafeRide had more drivers during their busiest hours, the service would be much more effective. By predicting SafeRide wait times throughout the night and finding out what times are less busy, we hope to provide an accurate way to find out when the quietest times for a SafeRide are. Knowing when SafeRide will be less busy could also help the SafeRide board decide how many drivers to have on call each night. </p>
-			<img src="car2.jpg"/>
-			<p>We also looked at which features tend to affect wait times the most and how. The SafeRide executive board could use this information as a tool to decide how many drivers to have on call each night. For example, it is not immediately obvious how bad weather affects SafeRide wait times. It could keep students from going out at all and thus decrease the wait times throughout the night, or it could increase the wait times if students still go out but are more reliant on SafeRides to avoid walking in bad weather. By analyzing these factors, we can develop a set of preferences for the student body that the SafeRide executive board could use to understand when saferide will be busiest.</p>
-		</div>
-	</div>
-
-	<div class="divider"></div>
-
-	<div id="solution" class="content">
-		<h1>Our Solution</h1>
-		<div class="text">
-			<p>Initially, four attributes and one classifier were used. The classifier was wait time. The four attributes were hour of the night, day of the week, week of the quarter, and quarter, which for now are all divided categorically. After the progress report, two more attributes were added to the data set. The first was a binary weather attribute that was true if it rained or there was a thunderstorm and false if not. The second attribute was the minimum temperature recorded for that day. Initially, the features were divided categorically. </p>
-			<p>The four attributes were hour of the night, day of the week, week of the quarter, and the quarter itself, which for now are all divided into distinct categories. We were able to use some natural language processing to obtain the wait time based on a particular tweet, and used the timestamp to find the other attributes we’ve gathered so far. These timestamps were cross-referenced with Northwestern’s historical academic calendar to determine things like the week of the quarter. We will be randomly dividing the data into sets for training, validation, and testing for now, and may test on Saferide’s more recent tweets in the future.</p>
-
-		</div>
-	</div>
-
-	<div class="divider"></div>
-
-	<div id="testing" class="content">
-		<h1>Our Testing</h1>
-		<div class="text">
-			<p>The wait time data was gathered from SafeRide’s twitter, <a href="http://twitter.com/NUSafeRide">@NUSafeRide</a>. In total there were 10,700 tweets to read from the previous 5 years. Approximately 10,000 tweets contained relevant information that indicated the current wait time. We determined the relevance of these tweets through the use of some simple natural language processing. Tweets from @NUSafeRide that are about wait times follow a very simple format, along the lines of “Wait is 45 minutes” or even just “45 mins”. If a tweet followed that or other recognized formats, the time was extracted. If the wait time couldn’t be recognized, or if it was deemed to be an irrelevant tweet (such as “Happy Holidays!”), then it was not added to the dataset.</p>
-			<blockquote class="twitter-tweet" lang="en"><p>35-45 minutes</p>&mdash; SafeRide (@NUSafeRide) <a href="http://twitter.com/NUSafeRide/statuses/446457443674251264">March 20, 2014</a></blockquote>
-<script async src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
-			<p>Once a tweet was established as useful, the timestamp associated with that tweet was used to find other attributes. Hour of the night, day of the week, etc could be directly calculated from the timestamp, while such as week of the quarter or the quarter itself was compared against data gathered from the Office of the Registrar. Finally, weather for the specified time period was downloaded from WeatherUnderground.</p>
-			<p>We measured success 
-		</div>
-	</div>
-
-	<div class="divider"></div>
-
-	<div id="results" class="content">
-		<h1>Our Results</h1>
-		<div class="text">
-			<p></p>
-		</div>
-	</div>
-
     </div><!-- /.container -->
 
 

@@ -1,0 +1,144 @@
+DATA:
+
+
+DISCRETE:
+	ZeroR:
+		Training Set:
+			Correctly Classified: 24.5985%
+			root mean squared error: .3697
+		Cross Validation:
+			same
+
+	---
+
+	BFTree:
+		Training Set:
+			Correctly Classified: 35.182%
+			root mean squared error: .3543
+		Cross Validation:
+			Correctly Classified: 33.472%
+			root mean squared error: .3614
+	J48:
+		Training Set:
+			Correctly Classified: 44.714%
+			root mean squared error: .3345
+		Cross Validation:
+			Correctly Classified: 33.807%
+			root mean squared error: .3702
+	KStar:
+		Training Set:
+			Correctly Classified: 56.3489%
+			root mean squared error: .3281
+		Cross Validation:
+			Correctly Classified: 33.5644%
+			root mean squared error: .3592	
+	Multilayer Perceptron:
+		Training Set:
+			Correctly Classified: 41.8718%
+			root mean squared error: .3454
+		Cross Validation:
+			took just way way way too long
+	BayesNet:
+		Training Set:
+			Correctly Classified: 34.1883%
+			root mean squared error: .3576
+		Cross Validation:
+			Correctly Classified: 33.0791%
+			root mean squared error: .3592
+	BayesNet:
+		Training Set:
+			Correctly Classified: 34.1883%
+			root mean squared error: .3576
+		Cross Validation:
+			Correctly Classified: 33.0791%
+			root mean squared error: .3592
+	HNB:
+		Training Set:
+			Correctly Classified: 39.0988%
+			root mean squared error: .3478
+		Cross Validation:
+			Correctly Classified: 34.4887%
+			root mean squared error: .3567
+	NaiveBays:
+		Training Set:
+			Correctly Classified: 34.2808%
+			root mean squared error: .3577
+		Cross Validation:
+			Correctly Classified: 33.0676%
+			root mean squared error: .3593
+
+CONTINUOUS: 
+	ZeroR:
+		Training Set:
+			Root mean squared error: 36.6169%
+		Cross Validation:
+			Root mean squared error: 36.6201%
+
+	---
+
+	IsotonicRegression:
+		Training Set:
+			correlation: 0.2822
+			root mean squared error: 35.1283%
+		Cross Validation: 
+			correlation: 0.2802
+			root mean squared error: 35.1506%
+	LeastmedSquare:
+		Training Set:
+			correlation: 0.23
+			root mean squared error: 37.0705%
+		Cross Validation: 
+			correlation: 0.25
+			root mean squared error: 36.3555%
+	LinearRegression:
+		Training Set:
+			correlation: 0.2684
+			root mean squared error: 35.2731%
+		Cross Validation: 
+			correlation: 0.2661
+			root mean squared error: 35.2964%
+	Multilayer perceptron:
+		Training Set:
+			correlation: 0.1096
+			root mean squared error: 38.9186%
+		Cross Validation: 
+			not worth it...			
+	PaceRegression:
+		Training Set:
+			correlation: 0.2684
+			root mean squared error: 35.2732%
+		Cross Validation: 
+			correlation: 0.266
+			root mean squared error: 35.2978%
+	SimpleLinearRegression:
+		Training Set:
+			correlation: 0.2423
+			root mean squared error: 35.526%
+		Cross Validation: 
+			correlation: 0.2415
+			root mean squared error: 35.533%
+
+	----
+
+	KStar:
+		Training Set:
+			correlation: 0.6146
+			root mean squared error: 30.4265%
+		Cross Validation: 
+			correlation: 0.323
+			root mean squared error: 34.6588%
+	Additive Regression:
+		Training Set:
+			correlation: 0.3149
+			root mean squared error: 34.7624%
+		Cross Validation: 
+			correlation: 0.3073
+			root mean squared error: 34.8551%
+	IsotonicRegression:
+		Training Set:
+			correlation: 0.2822
+			root mean squared error: 35.1283%
+		Cross Validation: 
+			correlation: 0.2802
+			root mean squared error: 35.1506%
+
