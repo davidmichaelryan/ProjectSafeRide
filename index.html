@@ -98,7 +98,6 @@
 					</div>
 				<p>
 				We used six attributes to try and predict our classifier. We originally used hour of the night,  day of the week, week of the quarter, and the quarter itself. We later added weather events and the minimum recorded temperature for that night. These attributes were used to try and predict our classifier, which was the wait time for a SafeRide at that point in the night. We used these attributes as features in Weka, and were able to test our dataset with a variety of learners. We also sought to try different representations of our dataset, both in discrete and continuous results.</p>
-
 				<p>The wait time data was gathered from SafeRide’s twitter, <a href="http://twitter.com/NUSafeRide">@NUSafeRide</a>. In total there were 10,700 tweets to read from the previous 5 years. We determined the relevance of these tweets through the use of some simple natural language processing. Tweets from @NUSafeRide that are about wait times follow a very simple format, along the lines of “Wait is 45 minutes” or even just “45 mins”. If a tweet followed that or other recognized formats, the time was extracted.</p>
 				<div class="image" style="max-width:500px;">
 					<blockquote class="twitter-tweet" lang="en"><p>35-45 minutes</p>&mdash; SafeRide (@NUSafeRide) <a href="http://twitter.com/NUSafeRide/statuses/446457443674251264">March 20, 2014</a></blockquote>
@@ -164,6 +163,7 @@
 				    </table>
 				   </div>
 		   		<p>We measured success based on whether or not we were able to put our predicted wait time in the same range as the actual wait time. We initially tested many different classifiers and recorded their cross-validated accuracy. Then, we moved forward with the best of these attributes on our training set. For the discrete dataset, we tested to see if our prediction and the actual result fell within the same pre-defined range. For the continuous results, we checked that same set of pre-defined ranges on the actual value and checked it against the predicted value, in order to provide a basis of comparison for the two sets. </p>
+
 			</div>
 		</div>
 
@@ -201,7 +201,5 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-  <script>
 
-</script>
 </body></html>
