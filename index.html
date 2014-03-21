@@ -97,7 +97,7 @@
 						<span>* Added in second round of testing</span>
 					</div>
 				<p>
-				We used six attributes to try and predict our classifier. We originally used hour of the night,  day of the week, week of the quarter, and the quarter itself. We later added weather events and the minimum recorded temperature for that night. We used these attributes to try and predict our classifier, which was the wait time for a SafeRide at that point in the night. We used these attributes as features in Weka, and were able to test our dataset with a variety of learners. We also sought to try different representations of our dataset, both in discrete and continuous results.</p>
+				We used six attributes to try and predict our classifier. We originally used hour of the night,  day of the week, week of the quarter, and the quarter itself. We later added weather events and the minimum recorded temperature for that night. These attributes were used to try and predict our classifier, which was the wait time for a SafeRide at that point in the night. We used these attributes as features in Weka, and were able to test our dataset with a variety of learners. We also sought to try different representations of our dataset, both in discrete and continuous results.</p>
 
 				<p>The wait time data was gathered from SafeRide’s twitter, <a href="http://twitter.com/NUSafeRide">@NUSafeRide</a>. In total there were 10,700 tweets to read from the previous 5 years. We determined the relevance of these tweets through the use of some simple natural language processing. Tweets from @NUSafeRide that are about wait times follow a very simple format, along the lines of “Wait is 45 minutes” or even just “45 mins”. If a tweet followed that or other recognized formats, the time was extracted.</p>
 				<div class="image" style="max-width:500px;">
@@ -163,7 +163,7 @@
 				      </tbody>
 				    </table>
 				   </div>
-		   		<p>We measured success based on whether or not we were able to put our predicted wait time in the same range as the actual wait time. For these tests, we created ranges in increments of 20, and tested our dataset using both categorical and continuous values.</p>
+		   		<p>We measured success based on whether or not we were able to put our predicted wait time in the same range as the actual wait time. We initially tested many different classifiers and recorded their cross-validated accuracy. Then, we moved forward with the best of these attributes on our training set. For the discrete dataset, we tested to see if our prediction and the actual result fell within the same pre-defined range. For the continuous results, we checked that same set of pre-defined ranges on the actual value and checked it against the predicted value, in order to provide a basis of comparison for the two sets. </p>
 			</div>
 		</div>
 
@@ -172,7 +172,24 @@
 		<div id="results" class="content">
 			<h1>Our Results</h1>
 			<div class="text">
-				<p></p>
+				<h3>Discrete:</h3>
+				<p>Overall, the Bayesian algorithms produced the most accurate results. These results were shown to be significant in comparison with the baseline value of the ZeroR Tree that returned an accuracy of 28.3986 %. The best test result from the discrete data was from the HNB algorithm with an accuracy of 39.27% with 359 correctly classified instances. The Lazy Bayesian Rule algorithm also worked well. This had an accuracy of 38.29% with 250 correctly classified instances. 
+				</p>
+				<p> From looking at the data during preprocessing, it appeared some of the attributes had more influence than other on the wait time than others. The wait times did not vary greatly across each day of the week, however it fluctuated greatly depending on the hour of the night. 
+				</p>
+				<div class="image chart" style="max-width:1276px">
+					<img src="discreteChart.png">
+					<p>The discrete data representation. Each chart has bars divided up into the different symbolic representations of each attribute. Those bars are divided by color into the different wait times, which can be referenced in the 'wait' chart. </p>
+				</div>
+				<h3>Continuous:</h3>
+				<p>We were able to produce significant results with our continuous data as well. After converting the data set to reflect numerical values, the ZeroR classifier predicted a value of 42.266 and produced a root mean squared error of 26.2974. When evaluated on our test dataset, it was able to place the data into the correct range 24.316% of the time. Other continuous classifiers were able to perform significantly better on our dataset. The M5P classifier produced the smallest root mean squared error at 24.9658%. The KStar attribute was the most accurate when comparing its prediction to the actual value in our discrete ranges (0-20,20-40, etc). It was able to place the prediction in the same range as the actual value 31.05% of the time, and had a root mean squared error of 25.0113. 
+				</p>
+				<p>Its success may have come from the fact that it uses both decision trees and a series of linear regression equations in order to classify the data. Since some attributes in the data set are better represented as splits rather than a continuous range, creating a preliminary decision tree to separate different examples based on those attributes could have further specified and improved the accuracy of each of the linear regression models. Additionally, the use of an entropy distance measure in the KStar means it it better suited to handle the mix of real-valued and symbolic attributes that made M5P successful. 
+				</p>
+				<div class="image chart" style="max-width:1276px">
+					<img src="continuousChart.png">
+					<p>The continuous data representation. Each bar represents the frequency of each value for that attribute.</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -184,6 +201,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-  
+  <script>
 
+</script>
 </body></html>
